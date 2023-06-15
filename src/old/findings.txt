@@ -1,0 +1,52 @@
+
+faster:
+"""
+@define(frozen=True)
+class Block2():
+   
+    topleft:Position
+
+    bottomRight:Position 
+
+    @classmethod
+    def create(cls,head:Position,direction:int,size:int):
+        if direction == HORINZTAL:
+            return Block2(head, head.delta(dx=size,dy=1))
+        else:
+            return Block2(head, head.delta(dx=1,dy=size))
+    
+def overlapp2(block1:Block2,block2:Block2):
+
+    l1,r1 = block1.topleft,block1.bottomRight
+    l2,r2 = block2.topleft,block2.bottomRight
+
+    top_edge_of_block1 = l1.y 
+    bottom_edge_of_block1 = r1.y 
+
+    left_edge_of_block1 = l1.x
+    right_edge_of_block1 = r1.x 
+
+
+  
+    top_edge_of_block2 = l2.y 
+    bottom_edge_of_block2 = r2.y 
+
+    left_edge_of_block2 = l2.x
+    right_edge_of_block2 = r2.x 
+    
+    area_of_block1_is_zero =top_edge_of_block1 == bottom_edge_of_block1 or  left_edge_of_block1 == right_edge_of_block1
+    area_of_block2_is_zero = top_edge_of_block2 == bottom_edge_of_block2 or left_edge_of_block2 == right_edge_of_block2
+    
+    if area_of_block1_is_zero and area_of_block2_is_zero :
+        return False
+    
+    is_left_side_of_other = right_edge_of_block2 <= left_edge_of_block1 or right_edge_of_block1 <= left_edge_of_block2
+    if is_left_side_of_other:
+        return False
+ 
+    is_above_other = bottom_edge_of_block1 <= top_edge_of_block2   or   bottom_edge_of_block2 <= top_edge_of_block1
+    if is_above_other:
+        return False
+ 
+    return True 
+"""

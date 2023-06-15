@@ -1,0 +1,9 @@
+train: ./unblockme/images/train/
+val: ./unblockme/images/val/
+test: ./unblockme/images/test/
+
+# number of classes
+nc: 7
+
+# class names
+names: ["H2x", "H3x", "V2x", "V3x", "silver", "red", "grid"]

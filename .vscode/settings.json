@@ -1,0 +1,14 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "autopep8.importStrategy": "useBundled",
+    "pylint.importStrategy": "fromEnvironment",
+    "cSpell.words": [
+        "postion"
+    ],
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    "python.formatting.provider": "none"
+}
