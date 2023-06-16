@@ -3,11 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Sequence, NamedTuple
 from dataclasses import dataclass
 
-
-class GuiderException(Exception):
-
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(kwargs["message"])
+from tools.common.interafaces.exceptions.general import GuiderException
 
 
 @dataclass

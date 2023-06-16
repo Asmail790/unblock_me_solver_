@@ -1,0 +1,9 @@
+train: ./new_unblock_me_with_grid/images/train/
+val: ./new_unblock_me_with_grid/images/val/
+test: ./new_unblock_me_with_grid/images/test/
+
+# number of classes
+nc: 7
+
+# class names
+names: ["H2X", "H3X", "V2X", "V3X", "MainBlock", "FixedBlock","Grid"]

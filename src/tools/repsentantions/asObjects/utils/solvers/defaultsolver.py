@@ -7,7 +7,7 @@ from tools.common.interafaces.graph_builder import IGenericGraphBuilder
 from tools.common.interafaces.checkers import IPuzzleSolvedChecker, IPuzzleValidator
 from tools.common.interafaces.deriver import Deriver
 from tools.common.interafaces.solver import IPuzzleSolver
-from tools.repsentantions.asObjects.utils.solvers.exceptions import NoSolutionExist, UnvalidPuzzle
+from tools.common.interafaces.exceptions.no_solution_exist import NoSolutionExistException
 from tools.repsentantions.asObjects.utils.derivers.descriptions import MovementDescription
 from tools.repsentantions.asObjects.definitions.grid import Grid
 
@@ -35,8 +35,9 @@ class DefaultPuzzleSolver(IPuzzleSolver[Grid, STEPS]):
         self.__path: Optional[Sequence[Grid]] = None
 
     def solve(self, node: Grid) -> STEPS:
-        if self.__validator.is_valid(node) is False:
-            raise UnvalidPuzzle()
+        exceptions = self.__validator.as_exceptions(node)
+        if exceptions is not None:
+            raise exceptions
 
         if self.__path is not None and node in self.__path:
             start_index = self.__path.index(node)
@@ -72,6 +73,6 @@ class DefaultPuzzleSolver(IPuzzleSolver[Grid, STEPS]):
             node for node in graph.nodes if terminal_node_checker.is_solved(node)]
 
         if len(terminal_nodes) == 0:
-            raise NoSolutionExist()
+            raise NoSolutionExistException()
 
         return BuildResult(graph=graph, terminal_nodes=terminal_nodes)

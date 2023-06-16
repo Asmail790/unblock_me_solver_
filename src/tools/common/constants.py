@@ -5,16 +5,16 @@ from enum import Enum, auto
 
 ML_ClASS_NBR = Literal[0, 1, 2, 3, 4, 5, 6]
 ML_CLASS_STR = Literal["H2X", "H3X", "V2X",
-                       "V3X", "MainBlock", "FixedBlock", "GRID"]
+                       "V3X", "MainBlock", "FixedBlock", "Grid"]
 
 ML_NBR_TO_STR: Mapping[ML_ClASS_NBR, ML_CLASS_STR] = {
     0: "H2X",
     1: "H3X",
     2: "V2X",
     3: "V3X",
-    4: "FIXED",
-    5: "MAIN",
-    6: "GRID",
+    4: "MainBlock",
+    5: "FixedBlock",
+    6: "Grid",
 }
 ML_STR_TO_ML_NBR: Mapping[ML_CLASS_STR, ML_ClASS_NBR] = {
     v: k for k, v in ML_NBR_TO_STR.items()

@@ -3,7 +3,7 @@ from typing import TypeVar, Generic, NamedTuple
 from collections.abc import Sequence
 from collections.abc import Set
 
-from tools.common.interafaces.java_to_python_interface import BoundingBox, NextStep, GuiderException
+from tools.common.interafaces.java_to_python_interface import BoundingBox, NextStep
 
 _GRAPH = TypeVar("_GRAPH")
 _NODE = TypeVar("_NODE")

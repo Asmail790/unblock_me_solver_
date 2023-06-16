@@ -16,7 +16,6 @@ AddGridLabel(
     Path("/home/main/Desktop/asmail_kod/drag-and-drop/datasets/with_grid_label/labels"),
     10, 283, 203, 477, 295, 640
 )
-exit()
 
 
 def test(src: Path):

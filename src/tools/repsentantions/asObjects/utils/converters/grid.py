@@ -2,8 +2,9 @@ from tools.common.interafaces.converters import BASIC_GRID_OUTPUT, IGridConverte
 from tools.repsentantions.asObjects.definitions.grid import Grid
 from tools.common.interafaces.java_to_python_interface import BoundingBox
 from tools.common.constants import ML_STR_TO_ML_NBR, ML_NBR_TO_STR, ML_ClASS_NBR
+from tools.repsentantions.asObjects.utils.converters.coordinate.PixelToGridCoordinateConverter import PixelToGridCoordinateConverter
 from tools.repsentantions.asObjects.utils.converters.block import ML_STR_TO_PY_BLOCK_OBJECT, PY_BLOCK_OBJECT_TO_ML_STR
-from tools.repsentantions.asObjects.utils.converters.coordinate import GridToPixelCoordinateConverterWithoutGuide, PixelToGridCoordinateConverter
+from tools.repsentantions.asObjects.utils.converters.coordinate.GridToPixelCoordinateConverterWithoutGuide import GridToPixelCoordinateConverterWithoutGuide
 from tools.repsentantions.asObjects.definitions.block import Block
 from collections.abc import Collection, Sequence
 
@@ -12,11 +13,11 @@ class DefaultGridConverter(IGridConverter[Sequence[Block]]):
 
     def __init__(self, bounding: Collection[BoundingBox]) -> None:
         blocks = filter(
-            lambda x: ML_NBR_TO_STR[x.clazz] != 'GRID',
+            lambda x: ML_NBR_TO_STR[x.clazz] != 'Grid',
             bounding
         )
         self.__grid_props = list(filter(
-            lambda x: ML_NBR_TO_STR[x.clazz] == 'GRID',
+            lambda x: ML_NBR_TO_STR[x.clazz] == 'Grid',
             bounding
         ))[0]
 
@@ -43,7 +44,7 @@ class DefaultGridConverter(IGridConverter[Sequence[Block]]):
             return py_block_clazz(logical_pos)
 
         bounding_boxes = [
-            box for box in bounding_boxes if ML_NBR_TO_STR[box.clazz] != 'GRID']
+            box for box in bounding_boxes if ML_NBR_TO_STR[box.clazz] != 'Grid']
         logical_grid = [convert(box) for box in bounding_boxes]
 
         return logical_grid

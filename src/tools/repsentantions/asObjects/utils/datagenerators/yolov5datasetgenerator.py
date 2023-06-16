@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 from pathlib import Path
 from tqdm import tqdm
 from tools.repsentantions.asObjects.definitions.grid import Grid
-from tools.repsentantions.asObjects.utils.converters.coordinate import DefaultGridToPixelCoordinateConverterWithGuide
+from tools.repsentantions.asObjects.utils.converters.coordinate.DefaultGridToPixelCoordinateConverterWithGuide import DefaultGridToPixelCoordinateConverterWithGuide
 from tools.repsentantions.asObjects.definitions.block import Block
 from tools.repsentantions.asObjects.definitions.block import H2XBlock, H3XBlock, V2XBlock, V3XBlock, MainBlock, FixedBlock
 from tools.common.constants import ML_STR_TO_ML_NBR
@@ -153,6 +153,13 @@ class ToYOLOV5():
                 sample.image.save(image_path)
 
 
+"""
+# x1,y2 = 10,203
+# x2,y2 = 283,477
+# width = 295,640
+"""
+
+
 class AddGridLabel():
     def __init__(self, old_labels_path: Path, new_labels_path: Path,
                  x1: int, x2: int, y1: int, y2: int, img_width: int, img_height: int) -> None:
@@ -176,7 +183,7 @@ class AddGridLabel():
             for filename in listdir(old_labels_path / section):
                 with open(old_labels_path / section / filename, "r") as rf, open(new_labels_path / section / filename, "w") as wf:
                     grid_label = "{} {:.5f} {:.5f} {:.5f} {:.5f}\n".format(
-                        ML_STR_TO_ML_NBR["GRID"],
+                        ML_STR_TO_ML_NBR["Grid"],
                         center_xn,
                         center_yn,
                         width_n,

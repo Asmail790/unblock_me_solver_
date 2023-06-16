@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, Optional
+from tools.common.interafaces.exceptions.unvalid_puzzle import UnvalidPuzzleExceptionGroup
 
 X = TypeVar("X")
 
@@ -15,6 +16,11 @@ class IPuzzleValidator(ABC, Generic[X]):
     """
     @abstractmethod
     def is_valid(self, grid: X) -> bool:
+        raise NotImplementedError()
+
+    @abstractmethod
+    def as_exceptions(
+            self, grid: X) -> Optional[UnvalidPuzzleExceptionGroup]:
         raise NotImplementedError()
 
 
